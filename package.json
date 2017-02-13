@@ -1,0 +1,24 @@
+{
+  "name": "rgr-links",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config server.webpack.js",
+    "start": "node build/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "express-graphql": "^0.6.3",
+    "graphql": "^0.9.1",
+    "humps": "^2.0.0",
+    "pg": "^6.1.2",
+    "pg-native": "^1.10.0"
+  },
+  "devDependencies": {
+    "webpack": "2.2.0-rc.0"
+  }
+}

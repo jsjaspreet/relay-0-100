@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  postgres_rgr_links:
+    image: postgres:rgr-links
+    container_name: "postgres-links"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=links
+
