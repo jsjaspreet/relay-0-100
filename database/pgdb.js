@@ -22,6 +22,15 @@ export default (pgPool) => {
       delete from links where id=$1
       returning *
       `, [id]).then(res => humps.camelizeKeys(res.rows[0]))
+    },
+    updateLink({ id, link, linkTitle }) {
+      return pgPool.query(`
+      update links
+      set link=$1,
+          link_title=$2
+      where id=$3
+      returning *
+      `, [link, linkTitle, id]).then(res => humps.camelizeKeys(res.rows[0]))
     }
   }
 }

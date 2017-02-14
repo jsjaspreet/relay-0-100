@@ -1,6 +1,7 @@
 import {
   GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLString
 } from 'graphql'
 
 import {
@@ -12,10 +13,12 @@ import pgdbCreator from '../../database/pgdb'
 import LinkConnectionType from '../types/linkConnection'
 import storeType from '../types/store'
 
-const deleteLinkMutation = mutationWithClientMutationId({
-  name: 'DeleteLink',
+const updateMutation = mutationWithClientMutationId({
+  name: 'UpdateLink',
   inputFields: {
+    link: { type: new GraphQLNonNull(GraphQLString) },
     id: { type: new GraphQLNonNull(GraphQLID) },
+    linkTitle: { type: new GraphQLNonNull(GraphQLString) },
   },
   outputFields: {
     link: {
@@ -29,8 +32,8 @@ const deleteLinkMutation = mutationWithClientMutationId({
   },
   mutateAndGetPayload: (input) => {
     const pgdb = pgdbCreator(pgPool)
-    return pgdb.deleteLink(input)
+    return pgdb.updateLink(input)
   }
 })
 
-export default deleteLinkMutation
+export default updateMutation

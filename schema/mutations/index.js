@@ -4,12 +4,14 @@ import {
 
 import CreateLinkMutation from './addLink'
 import DeleteLinkMutation from './deleteLink'
+import UpdateLinkMutation from './updateLink'
 
 const RootMutationType = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: () => ({
     CreateLink: CreateLinkMutation,
-    DeleteLink: DeleteLinkMutation
+    DeleteLink: DeleteLinkMutation,
+    UpdateLink: UpdateLinkMutation
   })
 })
 
