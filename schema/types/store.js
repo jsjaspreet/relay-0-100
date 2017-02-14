@@ -2,17 +2,25 @@ import {
   GraphQLObjectType,
   GraphQLList
 } from 'graphql'
-import linkType from './link'
+import {
+  connectionArgs,
+  connectionFromPromisedArray,
+  globalIdField
+} from 'graphql-relay'
+
+import linkConnection from './linkConnection'
 import pgdbCreator from '../../database/pgdb'
 
 const storeType = new GraphQLObjectType({
   name: 'Store',
   fields: {
-    links: {
-      type: new GraphQLList(linkType),
+    id: globalIdField("Store"),
+    linkConnection: {
+      type: linkConnection.connectionType,
+      args: connectionArgs,
       resolve: (obj, args, { pgPool }) => {
         const pgdb = pgdbCreator(pgPool)
-        return pgdb.getLinks()
+        return connectionFromPromisedArray(pgdb.getLinks(), args)
       }
     }
   }

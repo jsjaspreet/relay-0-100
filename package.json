@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config server.webpack.js",
+    "clean": "rm -rf build",
     "start": "node build/server.js"
   },
   "keywords": [],
@@ -14,6 +15,7 @@
     "express": "^4.14.1",
     "express-graphql": "^0.6.3",
     "graphql": "^0.9.1",
+    "graphql-relay": "^0.5.1",
     "humps": "^2.0.0",
     "pg": "^6.1.2",
     "pg-native": "^1.10.0"
