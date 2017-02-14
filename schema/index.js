@@ -4,6 +4,7 @@ import {
 } from 'graphql'
 
 import storeType from './types/store'
+import mutationType from './mutations'
 
 const RootSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -14,7 +15,8 @@ const RootSchema = new GraphQLSchema({
         resolve: () => ({})
       }
     })
-  })
+  }),
+  mutation: mutationType
 })
 
 export default RootSchema
