@@ -5,6 +5,6 @@
     "react"
   ],
   "plugins": [
-    './babelPluginRelay'
+    "./babelPluginRelay"
   ]
 }

@@ -24,6 +24,7 @@ class Links extends Component {
             <TableRow>
               <TableHeaderColumn>Created At</TableHeaderColumn>
               <TableHeaderColumn>Link</TableHeaderColumn>
+              <TableHeaderColumn> </TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody>

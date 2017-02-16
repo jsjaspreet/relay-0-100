@@ -9,7 +9,7 @@ import UpdateLinkMutation from './updateLink'
 const RootMutationType = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: () => ({
-    CreateLink: CreateLinkMutation,
+    AddLink: CreateLinkMutation,
     DeleteLink: DeleteLinkMutation,
     UpdateLink: UpdateLinkMutation
   })

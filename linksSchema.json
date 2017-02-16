@@ -382,7 +382,7 @@
           "description": null,
           "fields": [
             {
-              "name": "CreateLink",
+              "name": "AddLink",
               "description": null,
               "args": [
                 {

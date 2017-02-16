@@ -14,7 +14,7 @@ import pgdbCreator from '../../database/pgdb'
 import LinkConnectionType from '../types/linkConnection'
 import storeType from '../types/store'
 
-const createLinkMutation = mutationWithClientMutationId({
+const AddLinkMutation = mutationWithClientMutationId({
   name: 'AddLink',
   inputFields: {
     link: { type: new GraphQLNonNull(GraphQLString) },
@@ -38,4 +38,4 @@ const createLinkMutation = mutationWithClientMutationId({
   }
 })
 
-export default createLinkMutation
+export default AddLinkMutation
