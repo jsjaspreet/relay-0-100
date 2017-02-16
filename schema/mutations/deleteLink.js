@@ -1,5 +1,6 @@
 import {
   GraphQLNonNull,
+  GraphQLString,
   GraphQLID
 } from 'graphql'
 
@@ -18,6 +19,10 @@ const deleteLinkMutation = mutationWithClientMutationId({
     id: { type: new GraphQLNonNull(GraphQLID) },
   },
   outputFields: {
+    deletedLinkId: {
+      type: GraphQLString,
+      resolve: (obj) => obj.id
+    },
     link: {
       type: LinkConnectionType.edgeType,
       resolve: (obj) => ({ node: obj, cursor: obj.id })

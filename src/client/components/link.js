@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Relay from 'react-relay'
 import RaisedButton from 'material-ui/RaisedButton';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
+import DeleteLinkMutation from '../mutations/DeleteLinkMutation'
 import moment from 'moment'
 
 function getDateFromCreatedAt(createdAt) {
@@ -9,7 +10,23 @@ function getDateFromCreatedAt(createdAt) {
 }
 
 class Link extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    console.log("Deleting...")
+    this.props.relay.commitUpdate(
+      new DeleteLinkMutation({
+        id: this.props.id,
+        store: this.props.store
+      })
+    )
+  }
+
   render() {
+    console.log(this.props)
     const { createdAt, link, linkTitle } = this.props.link
     return (
       <TableRow>
@@ -20,7 +37,7 @@ class Link extends Component {
           <a href={link}>{linkTitle}</a>
         </TableRowColumn>
         <TableRowColumn>
-          <RaisedButton secondary label="Delete"/>
+          <RaisedButton secondary label="Delete" onClick={this.handleClick}/>
         </TableRowColumn>
       </TableRow>
     )

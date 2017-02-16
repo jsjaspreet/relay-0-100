@@ -16,6 +16,7 @@ class LinksRoute extends Relay.Route {
 }
 
 class Links extends Component {
+
   render() {
     return (
       <div style={{ width: 1024, margin: 'auto' }}>
@@ -30,7 +31,8 @@ class Links extends Component {
           <TableBody>
             {
               this.props.store.linkConnection.edges.map((edge) => <Link id={edge.node.id}
-                                                                        link={edge.node}/>)
+                                                                        link={edge.node}
+                                                                        store={this.props.store}/>)
             }
           </TableBody>
         </Table>
