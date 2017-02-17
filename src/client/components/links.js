@@ -31,9 +31,9 @@ class Links extends Component {
           </TableHeader>
           <TableBody>
             {
-              this.props.store.linkConnection.edges.map((edge) => <Link id={edge.node.id}
-                                                                        link={edge.node}
-                                                                        store={this.props.store}/>)
+              this.props.store.linkConnection.edges.map(({ node }) => <Link key={node.id}
+                                                                            link={node}
+                                                                            store={this.props.store}/>)
             }
           </TableBody>
         </Table>
@@ -54,7 +54,7 @@ const LinksContainer = Relay.createContainer(Links, {
       linkConnection(first: $limit) {
         edges {
           node {
-            id
+            id 
             ${Link.getFragment('link')}
           }
         }

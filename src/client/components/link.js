@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField'
 import Popover from 'material-ui/Popover'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
 import DeleteLinkMutation from '../mutations/DeleteLinkMutation'
+import UpdateLinkMutation from '../mutations/UpdateLinkMutation'
 import moment from 'moment'
 
 function getDateFromCreatedAt(createdAt) {
@@ -22,13 +23,20 @@ class Link extends Component {
   handleDelete() {
     this.props.relay.commitUpdate(
       new DeleteLinkMutation({
-        id: this.props.id,
+        id: this.props.link.id,
         store: this.props.store
       })
     )
   }
 
   handleUpdate() {
+    this.props.relay.commitUpdate(
+      new UpdateLinkMutation({
+        id: this.props.link.id,
+        linkTitle: this.state.linkTitle,
+        link: this.state.link
+      })
+    )
     this.setState({ linkTitle: '', link: '' })
     this.handleRequestClose()
   }

@@ -10,7 +10,7 @@ import {
 
 import pgPool from '../../src/server/pgPool'
 import pgdbCreator from '../../database/pgdb'
-import LinkConnectionType from '../types/linkConnection'
+import LinkType from '../types/link'
 import storeType from '../types/store'
 
 const updateMutation = mutationWithClientMutationId({
@@ -22,8 +22,8 @@ const updateMutation = mutationWithClientMutationId({
   },
   outputFields: {
     link: {
-      type: LinkConnectionType.edgeType,
-      resolve: (obj) => ({ node: obj, cursor: obj.id })
+      type: LinkType,
+      resolve: (obj) => obj
     },
     store: {
       type: storeType,

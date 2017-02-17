@@ -732,7 +732,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "linkConnectionEdge",
+                "name": "LinkType",
                 "ofType": null
               },
               "isDeprecated": false,
