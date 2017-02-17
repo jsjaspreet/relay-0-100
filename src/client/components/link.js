@@ -60,7 +60,7 @@ class Link extends Component {
   render() {
     const { createdAt, link, linkTitle } = this.props.link
     return (
-      <TableRow>
+      <TableRow className="animated fadeIn">
         <TableRowColumn>
           {getDateFromCreatedAt(createdAt)}
         </TableRowColumn>
