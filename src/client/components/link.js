@@ -21,7 +21,10 @@ class Link extends Component {
   }
 
   handleDelete() {
-    this.props.relay.commitUpdate(
+    // Call mutations with Relay.Store.commitUpdate
+    // There is also applyUpdate, which allows more control on when to actually commit a transaction
+    // See https://facebook.github.io/relay/docs/api-reference-relay-store.html
+    Relay.Store.commitUpdate(
       new DeleteLinkMutation({
         id: this.props.link.id,
         store: this.props.store
@@ -30,7 +33,10 @@ class Link extends Component {
   }
 
   handleUpdate() {
-    this.props.relay.commitUpdate(
+    // Call mutations with Relay.Store.commitUpdate
+    // There is also applyUpdate, which allows more control on when to actually commit a transaction
+    // See https://facebook.github.io/relay/docs/api-reference-relay-store.html
+    Relay.Store.commitUpdate(
       new UpdateLinkMutation({
         id: this.props.link.id,
         linkTitle: this.state.linkTitle,
@@ -41,16 +47,17 @@ class Link extends Component {
     this.handleRequestClose()
   }
 
+  // material ui stuff
   handleTouchTap = (event) => {
     // This prevents ghost click.
     event.preventDefault();
-
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
     });
   };
 
+  // material ui stuff
   handleRequestClose = () => {
     this.setState({
       open: false,
@@ -58,6 +65,7 @@ class Link extends Component {
   };
 
   render() {
+    // Fragment data is available directly as props, so can design assuming props are already available
     const { createdAt, link, linkTitle } = this.props.link
     return (
       <TableRow className="animated fadeIn">
@@ -98,6 +106,8 @@ class Link extends Component {
   }
 }
 
+// Create a higher order component by wrapping design-only component with Relay.createContainer
+// and specifying the data requirement in a regular GraphQL template string
 export default Relay.createContainer(Link, {
   fragments: {
     link: () => Relay.QL`

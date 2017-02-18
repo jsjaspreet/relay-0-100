@@ -3,7 +3,7 @@ import { LinksContainer, LinksRoute } from '../components/links'
 import { AddLinkRoute, AddLinkContainer }from '../components/addLinkForm'
 import Relay from 'react-relay'
 
-// React Router stuff going on here, looking more like config
+// normally React Router stuff would be going on here
 class App extends Component {
   render() {
     return (

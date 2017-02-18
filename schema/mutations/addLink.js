@@ -33,7 +33,6 @@ const AddLinkMutation = mutationWithClientMutationId({
   mutateAndGetPayload: (input) => {
     const pgdb = pgdbCreator(pgPool)
     const createdAt = moment().toISOString()
-    console.log(createdAt)
     return pgdb.addLink({ ...input, createdAt })
   }
 })
