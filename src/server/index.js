@@ -1,8 +1,5 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
-import fs from 'fs'
-import { graphql } from 'graphql'
-import { introspectionQuery } from 'graphql/utilities'
 import pgPool from './pgPool'
 import schema from '../../schema'
 import { resolve } from 'path'
@@ -19,14 +16,6 @@ app.use('/graphql', graphqlHTTP({
     }
   })
 )
-
- //graphql(schema, introspectionQuery).then((data) => {
- //  console.log('writing data')
- //  fs.writeFile('/home/jsjaspreet/dev/projects/rgr-links/linksSchema.json', JSON.stringify(data, null, 2), err => {
- //    if (err) throw err
- //    console.log("Wrote json schema")
- //  })
- //})
 
 // static
 const maxAge = nodeEnv === "production" ? 1000 * 60 * 60 * 24 * 30 : 0
