@@ -8,7 +8,7 @@ class UpdateLinkMutation extends Relay.Mutation {
   // those two response payloads
   static fragments = {
     link: () => Relay.QL`
-      fragment on linkConnectionEdge {
+      fragment on LinkConnectionEdge {
         node  {
           id
         }

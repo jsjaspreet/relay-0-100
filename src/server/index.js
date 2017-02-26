@@ -1,11 +1,22 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
 import pgPool from './pgPool'
-import schema from '../../schema'
+import  schema from '../../schema'
 import { resolve } from 'path'
+import fs from 'fs'
+import { graphql } from 'graphql'
+import { introspectionQuery } from 'graphql/utilities'
 
 const nodeEnv = process.env.NODE_ENV || "development"
 console.log(`Running in ${nodeEnv}`)
+
+//graphql(schema, introspectionQuery).then((data) => {
+//  console.log('writing data')
+//  fs.writeFile('/home/jsjaspreet/dev/projects/rgr-links/linksSchema.json', JSON.stringify(data, null, 2), err => {
+//    if (err) throw err
+//    console.log("Wrote json schema")
+//  })
+//})
 
 const app = express()
 app.use('/graphql', graphqlHTTP({
