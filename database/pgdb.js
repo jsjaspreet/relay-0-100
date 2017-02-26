@@ -2,10 +2,18 @@ import humps from 'humps'
 
 export default (pgPool) => {
   return {
-    getLinks(limit) {
+    getLinks(limit, query) {
+      if (query !== '') {
+        return this.getLinksByQuery(limit, query)
+      }
       return pgPool.query(`
         select * from links limit $1
       `, [limit]).then(res => humps.camelizeKeys(res.rows))
+    },
+    getLinksByQuery(limit, query) {
+      return pgPool.query(`
+        select * from links  where link_title ~* $2 limit $1
+      `, [limit, query]).then(res => humps.camelizeKeys(res.rows))
     },
     addLink({ link, linkTitle, createdAt }) {
       return pgPool.query(`

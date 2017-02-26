@@ -33,7 +33,10 @@ class Links extends Component {
   }
 
   handleSearch() {
-    console.log("Will search!")
+    const query = this.refs.search.value
+    this.props.relay.setVariables({
+      query
+    })
   }
 
   render() {
@@ -76,13 +79,14 @@ class Links extends Component {
 // https://facebook.github.io/relay/docs/guides-containers.html#requesting-different-data
 const LinksContainer = Relay.createContainer(Links, {
   initialVariables: {
-    limit: 2
+    limit: 2,
+    query: ""
   },
   fragments: {
     store: () => Relay.QL`
     fragment on Store {
       id,
-      linkConnection(first: $limit) {
+      linkConnection(first: $limit, query: $query) {
         edges {
           node {
             id 

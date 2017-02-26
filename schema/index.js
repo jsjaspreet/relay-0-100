@@ -63,10 +63,13 @@ const storeType = new GraphQLObjectType({
     id: globalIdField("Store"),
     linkConnection: {
       type: linkConnection.connectionType,
-      args: connectionArgs,
+      args: {
+        ...connectionArgs,
+        query: { type: GraphQLString }
+      },
       resolve: (obj, args, { pgPool }) => {
         const pgdb = pgdbCreator(pgPool)
-        return connectionFromPromisedArray(pgdb.getLinks(), args)
+        return connectionFromPromisedArray(pgdb.getLinks(args.limit, args.query), args)
       }
     }
   },
